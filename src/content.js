@@ -14,6 +14,11 @@ const CONFIG = {
 const PLATFORM_SELECTORS = [
   // OneTrust
   '#onetrust-accept-btn-handler',
+  '#accept-recommended-btn-handler',
+  // Optanon (older OneTrust)
+  '.optanon-allow-all',
+  // CookiePro (OneTrust subsidiary)
+  '#cookiepro-accept',
   // Cookiebot
   '#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll',
   '#CybotCookiebotDialogBodyButtonAccept',
@@ -23,6 +28,7 @@ const PLATFORM_SELECTORS = [
   '.cky-btn-accept',
   // Quantcast
   '.qc-cmp2-summary-buttons button[mode="primary"]',
+  '.qc-cmp2-summary-buttons > button:first-child',
   // TrustArc
   '#truste-consent-button',
   // Didomi
@@ -46,6 +52,81 @@ const PLATFORM_SELECTORS = [
   '#cookiescript_accept',
   // Iubenda
   '.iubenda-cs-accept-btn',
+  // Evidon
+  '#_evidon-accept-button',
+  // consentmanager.net
+  '.cmpboxbtn.cmpboxbtnyes',
+  // Cookie Information (coi)
+  '.coi-banner__accept',
+  // Cookie Control (Civic)
+  '#ccc-close',
+  '#ccc-recommended-settings',
+  // Tarteaucitron
+  '#tarteaucitronAllAllowed',
+  '.tarteaucitronAllow',
+  // Orejime
+  '.orejime-Button--save',
+  // EZ Cookie
+  '#ez-ok-cookies',
+  // HubSpot
+  '#hs-eu-confirmation-button',
+  // Cookie Notice by dFactory (WordPress)
+  '#cn-accept-cookie',
+  // Cookie Law Info (WordPress)
+  '#cookie_action_close_header',
+  // WP AutoTerms
+  '.wpautoterms-btn-agree',
+  // Axeptio
+  '[data-reach="accept"]',
+  // CookieHub
+  '.ch2-allow-all-btn',
+  // Pandectes (Shopify)
+  '.pandectes-accept',
+  // Sourcepoint
+  '.sp_choice_type_11',
+  'button[title="Accept all"]',
+  // Google Funding Choices
+  '.fc-cta-consent',
+  // Commanders Act / TrustCommander
+  '#consent-accept-button',
+  // LiveRamp / Faktor
+  '.lfr-btn-accept',
+  // CookieFirst
+  '.cf-accept-all',
+  // Shopify native
+  '.shopify-cookie-banner__btn--accept',
+  // Admiral
+  '.almnd-accept-btn',
+  // Sirdata
+  '.sd-cmp-KkCkG',
+  // Piwik PRO
+  '.ppms_cm_agree-to-all',
+  // EU Cookie Law plugin (WordPress)
+  '#catapult-cookie-bar .has-cookies-btn',
+  // GDPR Framework
+  '.gdpr-agreement',
+  // Securiti
+  '.consent-accept-button',
+  // Drupal EU Cookie Compliance
+  '.agree-button.eu-cookie-compliance-default-button',
+  // Magento
+  '#btn-cookie-allow',
+  // Shopware CookiePermission
+  '.cookie-permission--accept-button',
+  // Sibbo
+  '.sibbo-popup__accept',
+  // Adzapier
+  '.adz-accept-btn',
+  // UniConsent
+  '.unic-consent .unic-accept',
+  // CMP by Conversant
+  '.cmp-accept',
+  // Pubtech
+  '.pubtech-cmp-accept',
+  // Free Cookie Consent
+  '.fcc-btn--confirm',
+  // Ezoic
+  '#ez-accept-all',
 ];
 
 // Layer 2: Generic CSS patterns
@@ -61,18 +142,43 @@ const GENERIC_SELECTORS = [
   '[data-action="accept"]',
   '[data-response="accept"]',
   '[data-consent="accept"]',
+  '[data-cookie-accept]',
+  '[data-gdpr="accept"]',
+  '[data-cookie="accept"]',
+  '[data-cookieconsent="accept"]',
+  '[data-cc-action="accept"]',
+  '[data-cli-action="accept"]',
   '.js-accept-cookies',
   '.js-cookie-accept',
+  '.js-consent-accept',
   '.accept-cookies-button',
   '.cookie-banner__accept',
+  '.cookie-bar__accept',
+  '.cookie-popup__accept',
+  '.cookie-warning__accept',
+  '.cookie-alert__accept',
+  '.cookie-consent__accept',
+  '.cookie-agreement-accept',
+  '.cookie-btn-accept',
   '.consent-accept',
   '.consent-banner__accept',
+  '.consent-give',
+  '.consent-allow',
   '.gdpr-accept',
+  '.gdpr-consent-accept',
   '.cc-accept',
   '.cc-dismiss',
   '.cookie-notice-accept',
+  '.privacy-accept',
+  '.accept-all-cookies',
+  '.accept-all',
+  '.allow-cookies',
   '#cookie-accept',
+  '#cookie-bar-accept',
+  '#cookie-banner-accept',
   '#gdpr-accept',
+  '#accept-all',
+  '#allow-cookies',
   '.btn-cookie-accept',
 ];
 
@@ -87,12 +193,23 @@ const ACCEPT_TEXT_PATTERNS = [
   /^ok(ay)?[!.]?$/i,
   /^accept\s*(&|and)\s*continue$/i,
   /^accept\s*(&|and)\s*close$/i,
+  /^accept\s*(&|and)\s*proceed$/i,
+  /^close\s*(&|and)\s*accept$/i,
+  /^agree\s*(&|and)\s*continue$/i,
+  /^agree\s*(&|and)\s*close$/i,
+  /^save\s*(&|and)\s*accept$/i,
   /^continue\s*to\s*site$/i,
+  /^continue$/i,
   /^confirm(\s*all)?$/i,
   /^consent$/i,
   /^accept\s*all\s*&\s*visit/i,
   /^yes,?\s*i\s*accept/i,
   /^i\s*accept(\s*all)?$/i,
+  /^i\s*understand$/i,
+  /^that'?s?\s*ok(ay)?$/i,
+  /^accept\s*selected$/i,
+  /^enable\s*all$/i,
+  /^allow\s*all\s*cookies$/i,
   /^accept$/i,
   /^allow$/i,
 ];
@@ -123,6 +240,10 @@ const ARIA_ACCEPT_PATTERNS = [
   /accept\s*all/i,
   /allow\s*all/i,
   /^i\s*accept$/i,
+  /^i\s*agree$/i,
+  /dismiss.*cookie/i,
+  /close.*cookie.*banner/i,
+  /accept/i,
 ];
 
 // Helpers
@@ -145,7 +266,7 @@ function hasCookieAncestor(el, maxDepth = 6) {
   let depth = 0;
   while (current && depth < maxDepth) {
     const identifiers = ((current.id || '') + ' ' + (current.className || '')).toLowerCase();
-    if (/cookie|consent|gdpr|privacy|banner|cmp|notice/.test(identifiers)) {
+    if (/cookie|consent|gdpr|privacy|banner|cmp|notice|tracking|compliance|overlay|dialog|modal/.test(identifiers)) {
       return true;
     }
     current = current.parentElement;
