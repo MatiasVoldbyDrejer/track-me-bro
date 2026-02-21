@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+  <title>Track Me Bro</title>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">TRACK ME BRO</h1>
+      <p class="subtitle">because marketers have feelings too</p>
+    </header>
+
+    <div class="toggle-section">
+      <label class="toggle-label" for="toggle">
+        <span class="toggle-text" id="toggle-status">Accepting cookies</span>
+        <div class="toggle-switch">
+          <input type="checkbox" id="toggle" checked>
+          <span class="toggle-slider"></span>
+        </div>
+      </label>
+    </div>
+
+    <div class="counter-section">
+      <p class="counter-label">Bros tracking you:</p>
+      <p class="counter-number" id="counter">0</p>
+    </div>
+
+    <div class="quip-section">
+      <p class="quip" id="quip">&nbsp;</p>
+    </div>
+
+    <footer class="footer">
+      <p>You're doing God's work. Or at least Karen's.</p>
+    </footer>
+  </div>
+
+  <script src="../quips.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
