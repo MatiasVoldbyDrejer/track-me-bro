@@ -67,4 +67,15 @@ Keep PRs focused. One fix per PR is ideal.
 
 ## Adding Quips
 
-If you've got a good one for `src/quips.js`, we're listening. The bar is: would Oatly's copywriter chuckle? If yes, submit it.
+Quips live in `src/quips.js`. There are two types:
+
+- **`BASE_QUIPS`** — shown at all levels. The general pool.
+- **`TIER_QUIPS`** — array of arrays, one per level (0-indexed). Higher-tier quips should be progressively more unhinged. Level 6 quips should read like the ramblings of someone who has fully embraced being a data point.
+
+The bar: would Oatly's copywriter chuckle? If yes, submit it.
+
+## Changing Levels
+
+The level config (`LEVELS` array) lives in two places that **must stay in sync**:
+- `src/quips.js` — used by the popup (has titles + colors)
+- `src/background.js` — used by the service worker for badge color (colors only)
