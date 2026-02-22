@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Track Me Bro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #B0B5B9;
+      color: #000;
+      font-family: 'VT323', monospace;
+      font-size: 1.2rem;
+      line-height: 1.4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 640px;
+      width: 100%;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .bro-face {
+      width: 64px;
+      height: 72px;
+      background: #FF4444;
+      clip-path: polygon(
+        20% 0%, 80% 0%, 100% 20%, 100% 70%,
+        85% 100%, 15% 100%, 0% 70%, 0% 20%
+      );
+      position: relative;
+      flex-shrink: 0;
+      image-rendering: pixelated;
+    }
+
+    .bro-face::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(#000 15%, transparent 16%),
+                        radial-gradient(#000 15%, transparent 16%);
+      background-size: 4px 4px;
+      background-position: 0 0, 2px 2px;
+      opacity: 0.15;
+    }
+
+    .eyes {
+      position: absolute;
+      top: 45%;
+      left: 20%;
+      width: 60%;
+      height: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .eye {
+      width: 14px;
+      height: 8px;
+      background: #000;
+    }
+
+    .mouth {
+      position: absolute;
+      bottom: 25%;
+      left: 35%;
+      width: 30%;
+      height: 6px;
+      background: #000;
+    }
+
+    .header-text {
+      text-transform: uppercase;
+    }
+
+    .header-title {
+      font-size: 2.4rem;
+      line-height: 0.85;
+      letter-spacing: -1px;
+    }
+
+    .header-sub {
+      font-size: 1rem;
+      opacity: 0.6;
+      margin-top: 4px;
+    }
+
+    /* Content */
+    h1 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      border-top: 2px solid #000;
+      padding-top: 8px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      margin-top: 32px;
+      margin-bottom: 8px;
+      color: #FF4444;
+    }
+
+    p {
+      margin-bottom: 12px;
+    }
+
+    ul {
+      list-style: none;
+      margin-bottom: 12px;
+    }
+
+    ul li::before {
+      content: '> ';
+      opacity: 0.5;
+    }
+
+    ol {
+      list-style: none;
+      counter-reset: item;
+      margin-bottom: 12px;
+    }
+
+    ol li {
+      counter-increment: item;
+    }
+
+    ol li::before {
+      content: counter(item) '. ';
+      opacity: 0.5;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 48px;
+      padding-top: 8px;
+      border-top: 2px solid #000;
+      opacity: 0.5;
+      font-size: 1rem;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    a {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <div class="bro-face">
+        <div class="eyes">
+          <div class="eye"></div>
+          <div class="eye"></div>
+        </div>
+        <div class="mouth"></div>
+      </div>
+      <div class="header-text">
+        <div class="header-title">Track Me Bro</div>
+        <div class="header-sub">Privacy Policy</div>
+      </div>
+    </div>
+
+    <h1>Privacy Policy</h1>
+
+    <p>Last updated: February 2026</p>
+
+    <p>Track Me Bro is a browser extension that automatically accepts cookie consent banners. This privacy policy explains what data the extension handles and how it is stored.</p>
+
+    <h2>What We Collect</h2>
+
+    <p>Track Me Bro stores the following data locally on your device:</p>
+
+    <ol>
+      <li>A count of how many websites have had their cookie banners accepted. This is a single number.</li>
+      <li>A list of domain names where cookie banners were accepted. This is used solely for deduplication so the same site is not counted twice.</li>
+      <li>Your on/off toggle preference.</li>
+    </ol>
+
+    <h2>What We Do Not Collect</h2>
+
+    <ul>
+      <li>No personal information (name, email, IP address, etc.)</li>
+      <li>No browsing history beyond the domain deduplication list</li>
+      <li>No analytics or telemetry of any kind</li>
+      <li>No data is sent to any server, third party, or external service</li>
+      <li>No advertising identifiers or tracking pixels (yes, we see the irony)</li>
+    </ul>
+
+    <h2>Where Data Is Stored</h2>
+
+    <ul>
+      <li>The toggle state and acceptance count are stored in chrome.storage.sync, which syncs across your signed-in Chrome browsers via your Google account. This is a standard Chrome API and the data never passes through our servers.</li>
+      <li>The domain list is stored in chrome.storage.local, which stays on your device and is never synced or transmitted.</li>
+    </ul>
+
+    <h2>Data Retention</h2>
+
+    <p>All data persists until you uninstall the extension or clear extension storage. There is no server-side data to delete because there is no server.</p>
+
+    <h2>Third-Party Services</h2>
+
+    <p>Track Me Bro uses zero third-party services, SDKs, or analytics platforms. The extension consists entirely of client-side JavaScript running in your browser.</p>
+
+    <h2>Changes to This Policy</h2>
+
+    <p>If we ever update this policy, the updated text will be included in the extension listing and in the project repository.</p>
+
+    <h2>Contact</h2>
+
+    <p>For questions about this privacy policy, open an issue on our <a href="https://github.com/MatiasVoldbyDrejer/track-me-bro">GitHub repository</a>.</p>
+
+    <div class="footer">
+      <span>Track Me Bro v1.0.0</span>
+      <a href="https://github.com/MatiasVoldbyDrejer/track-me-bro">GitHub</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
