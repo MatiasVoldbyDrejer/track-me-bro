@@ -5,3 +5,5 @@
 .claude/
 node_modules/
 BACKLOG.md
+store-listing/*.png
+store-listing/*.zip
