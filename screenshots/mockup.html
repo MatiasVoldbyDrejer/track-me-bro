@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Me Bro — Mockup</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+    :root {
+      --bg-color: #B0B5B9;
+      --fg-color: #000000;
+      --accent-color: #FF4444;
+      --font-main: 'VT323', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-font-smoothing: none;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--fg-color);
+      font-family: var(--font-main);
+      width: 380px;
+      margin: 0 auto;
+    }
+
+    #app-container {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      min-height: 600px;
+    }
+
+    .txt-xl {
+      font-size: 3rem;
+      line-height: 0.85;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    .txt-lg {
+      font-size: 1.8rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .txt-md {
+      font-size: 1.4rem;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .txt-sm {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .txt-xs {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .grid-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 24px;
+      opacity: 0.5;
+    }
+
+    .footer-meta {
+      text-align: right;
+    }
+
+    .bro-container {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+      position: relative;
+    }
+
+    .bro-visual {
+      width: 120px;
+      height: 140px;
+      background: var(--accent-color);
+      clip-path: polygon(
+        20% 0%, 80% 0%, 100% 20%, 100% 70%,
+        85% 100%, 15% 100%, 0% 70%, 0% 20%
+      );
+      position: relative;
+      image-rendering: pixelated;
+    }
+
+    .bro-visual::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(var(--fg-color) 15%, transparent 16%),
+                        radial-gradient(var(--fg-color) 15%, transparent 16%);
+      background-size: 4px 4px;
+      background-position: 0 0, 2px 2px;
+      opacity: 0.2;
+    }
+
+    .bro-eyes {
+      position: absolute;
+      top: 45%;
+      left: 20%;
+      width: 60%;
+      height: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .eye {
+      width: 20px;
+      height: 10px;
+      background: var(--fg-color);
+    }
+
+    .bro-mouth {
+      position: absolute;
+      bottom: 25%;
+      left: 35%;
+      width: 30%;
+      height: 4px;
+      background: var(--fg-color);
+    }
+
+    .bro-visual.happy {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    .bro-visual.happy .bro-mouth {
+      height: 12px;
+    }
+
+    .bro-visual.sad {
+      filter: grayscale(100%);
+      transform: scale(0.95);
+    }
+
+    .bro-meta-right {
+      position: absolute;
+      top: 10px;
+      right: 0;
+    }
+
+    .bro-meta-left {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    .toggle-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 32px;
+      cursor: pointer;
+    }
+
+    .toggle-header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .toggle-switch {
+      border: 2px solid var(--fg-color);
+      padding: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+    }
+
+    .toggle-switch.active {
+      background: var(--fg-color);
+      color: var(--bg-color);
+    }
+
+    .toggle-switch.active .toggle-knob {
+      background: var(--bg-color);
+    }
+
+    .toggle-knob {
+      width: 20px;
+      height: 20px;
+      background: var(--fg-color);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      border-top: 2px solid var(--fg-color);
+      padding-top: 4px;
+    }
+
+    .stat-label {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .accent-text {
+      color: var(--accent-color);
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 24px;
+      border: 2px solid var(--fg-color);
+      margin-top: 8px;
+      padding: 2px;
+      display: flex;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent-color);
+      position: relative;
+    }
+
+    .progress-fill::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent 50%, rgba(0,0,0,0.2) 50%);
+      background-size: 4px 100%;
+    }
+
+    .progress-meta {
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .quip-container {
+      margin-top: auto;
+      padding-top: 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .quip-text {
+      flex-grow: 1;
+      min-height: 3em;
+    }
+
+    .refresh-btn {
+      cursor: pointer;
+      border: 1px solid var(--fg-color);
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app-container">
+
+    <div class="txt-xl">
+      TRACK ME<br>
+      BRO.EXT
+    </div>
+
+    <div class="bro-container">
+      <div class="bro-visual happy" id="bro-char">
+        <div class="bro-eyes">
+          <div class="eye"></div>
+          <div class="eye"></div>
+        </div>
+        <div class="bro-mouth"></div>
+      </div>
+      <div class="txt-xs bro-meta-right">SIZE: 28KB</div>
+      <div class="txt-xs bro-meta-left">PX_FACE.OBJ</div>
+    </div>
+
+    <div class="toggle-section" id="cookie-toggle">
+      <div class="txt-sm toggle-header">
+        <span>CONSENT PROTOCOL</span>
+        <span id="status-text">-> ACTIVE</span>
+      </div>
+      <div class="toggle-switch active" id="toggle-ui">
+        <span class="txt-lg" id="toggle-label">ACCEPTING ALL</span>
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-label txt-sm">
+          <span>BROS TRACKING YOU</span>
+          <span>[REC]</span>
+        </div>
+        <div class="txt-xl" id="counter">542</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-label txt-sm">
+          <span>CURRENT RANK</span>
+          <span id="level-number">LVL.05</span>
+        </div>
+        <div class="txt-lg accent-text" id="level-title">ATTRIBUTION ANGEL</div>
+
+        <div class="progress-bar-container">
+          <div class="progress-fill" id="progress-fill" style="width: 8%;"></div>
+        </div>
+
+        <div class="txt-xs progress-meta">
+          <span id="next-level-name">NEXT: KAREN'S MVP</span>
+          <span id="next-level-remaining">459 TO GO</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quip-container">
+      <div class="refresh-btn" id="refresh-quip">&#8635;</div>
+      <div class="txt-md quip-text" id="quip">YOUR PRIVACY? A SMALL PRICE FOR BETTER AD RELEVANCE.</div>
+    </div>
+
+    <div class="txt-xs grid-footer">
+      <div>
+        TRNC M 007<br>
+        <span id="version-tag">VER. 1.0.0</span>
+      </div>
+      <div class="footer-meta">
+        EXT. ID: #X99<br>
+        TRENCH (C)
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Toggle between active/paused for screenshot capture
+    const toggleSection = document.getElementById('cookie-toggle');
+    const toggleUI = document.getElementById('toggle-ui');
+    const toggleLabel = document.getElementById('toggle-label');
+    const statusText = document.getElementById('status-text');
+    const broChar = document.getElementById('bro-char');
+    let isActive = true;
+
+    toggleSection.addEventListener('click', () => {
+      isActive = !isActive;
+      if (isActive) {
+        toggleUI.classList.add('active');
+        toggleLabel.textContent = 'ACCEPTING ALL';
+        statusText.textContent = '-> ACTIVE';
+        broChar.classList.remove('sad');
+        broChar.classList.add('happy');
+        document.documentElement.style.setProperty('--accent-color', '#FF4444');
+      } else {
+        toggleUI.classList.remove('active');
+        toggleLabel.textContent = 'PAUSED';
+        statusText.textContent = '-> PAUSED';
+        broChar.classList.remove('happy');
+        broChar.classList.add('sad');
+        document.documentElement.style.setProperty('--accent-color', '#555555');
+      }
+    });
+  </script>
+</body>
+</html>
