@@ -1,3 +1,7 @@
+:root {
+  --accent: #4A90D9;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -26,7 +30,7 @@ body {
   font-size: 26px;
   font-weight: 900;
   letter-spacing: 3px;
-  color: #ff6b35;
+  color: var(--accent);
 }
 
 .subtitle {
@@ -94,7 +98,7 @@ body {
 }
 
 .toggle-switch input:checked + .toggle-slider {
-  background: #ff6b35;
+  background: var(--accent);
 }
 
 .toggle-switch input:checked + .toggle-slider::before {
@@ -105,7 +109,7 @@ body {
 
 .counter-section {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .counter-label {
@@ -118,9 +122,47 @@ body {
 .counter-number {
   font-size: 56px;
   font-weight: 900;
-  color: #ff6b35;
+  color: var(--accent);
   margin: 4px 0;
   line-height: 1;
+}
+
+/* Level */
+
+.level-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.level-title {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #2a2a3e;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+  width: 0%;
+}
+
+.progress-label {
+  font-size: 11px;
+  color: #666;
+  margin-top: 6px;
 }
 
 /* Quip */

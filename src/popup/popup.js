@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const toggleStatus = document.getElementById('toggle-status');
   const counter = document.getElementById('counter');
   const quipEl = document.getElementById('quip');
+  const subtitle = document.querySelector('.subtitle');
+  const levelTitle = document.getElementById('level-title');
+  const progressFill = document.getElementById('progress-fill');
+  const progressLabel = document.getElementById('progress-label');
 
   // Load state
   const data = await chrome.storage.sync.get({
@@ -13,12 +17,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   toggle.checked = data.enabled;
   toggleStatus.textContent = data.enabled ? 'Accepting cookies' : 'Taking a break';
   animateCounter(counter, 0, data.count);
+  updateLevelUI(data.count);
 
-  // Pick a quip (or special message for 0)
+  // Pick a quip
   if (data.count === 0) {
     quipEl.textContent = 'No cookies accepted yet. Are you even browsing?';
   } else {
-    quipEl.textContent = getRandomQuip();
+    quipEl.textContent = getRandomQuip(data.count);
   }
 
   // Toggle handler
@@ -31,11 +36,37 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Real-time count updates while popup is open
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === 'sync' && changes.count) {
+      const newCount = changes.count.newValue;
       const oldVal = parseInt(counter.textContent) || 0;
-      animateCounter(counter, oldVal, changes.count.newValue);
-      quipEl.textContent = getRandomQuip();
+      animateCounter(counter, oldVal, newCount);
+      updateLevelUI(newCount);
+      quipEl.textContent = getRandomQuip(newCount);
     }
   });
+
+  function updateLevelUI(count) {
+    const level = getLevel(count);
+    const next = getNextLevel(count);
+
+    // Set accent color
+    document.documentElement.style.setProperty('--accent', level.color);
+
+    // Set level title in subtitle area
+    subtitle.textContent = level.title;
+    levelTitle.textContent = level.title;
+
+    // Progress bar
+    if (next) {
+      const prevMin = level.min;
+      const progress = ((count - prevMin) / (next.min - prevMin)) * 100;
+      progressFill.style.width = Math.min(progress, 100) + '%';
+      progressLabel.textContent = count + ' / ' + next.min + ' to ' + next.title;
+    } else {
+      // Max level
+      progressFill.style.width = '100%';
+      progressLabel.textContent = 'Max level. You absolute legend.';
+    }
+  }
 });
 
 function animateCounter(el, from, to) {
@@ -56,8 +87,4 @@ function animateCounter(el, from, to) {
   }
 
   requestAnimationFrame(step);
-}
-
-function getRandomQuip() {
-  return QUIPS[Math.floor(Math.random() * QUIPS.length)];
 }
