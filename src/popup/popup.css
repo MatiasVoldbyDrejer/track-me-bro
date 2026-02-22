@@ -64,15 +64,16 @@ body {
   opacity: 0.8;
 }
 
-/* Grid header */
+/* Grid footer */
 
-.grid-header {
+.grid-footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-bottom: 32px;
+  margin-top: 24px;
+  opacity: 0.5;
 }
 
-.header-meta {
+.footer-meta {
   text-align: right;
 }
 
@@ -303,9 +304,3 @@ body {
   color: var(--bg-color);
 }
 
-/* Footer */
-
-.footer-serial {
-  margin-top: 24px;
-  opacity: 0.5;
-}
