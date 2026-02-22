@@ -7,42 +7,83 @@
   <title>Track Me Bro</title>
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <h1 class="title">TRACK ME BRO</h1>
-      <p class="subtitle">because marketers have feelings too</p>
-    </header>
+  <div id="app-container">
 
-    <div class="toggle-section">
-      <label class="toggle-label" for="toggle">
-        <span class="toggle-text" id="toggle-status">Accepting cookies</span>
-        <div class="toggle-switch">
-          <input type="checkbox" id="toggle" checked>
-          <span class="toggle-slider"></span>
-        </div>
-      </label>
-    </div>
-
-    <div class="counter-section">
-      <p class="counter-label">Bros tracking you:</p>
-      <p class="counter-number" id="counter">0</p>
-    </div>
-
-    <div class="level-section">
-      <p class="level-title" id="level-title">Cookie Rookie</p>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
+    <div class="txt-xs grid-header">
+      <div>
+        TRNC M 007<br>
+        <span id="version-tag">VER. —</span>
       </div>
-      <p class="progress-label" id="progress-label"></p>
+      <div class="header-meta">
+        EXT. ID: #X99<br>
+        TRENCH (C)
+      </div>
     </div>
 
-    <div class="quip-section">
-      <p class="quip" id="quip">&nbsp;</p>
+    <div class="txt-xl">
+      TRACK ME<br>
+      BRO.EXT
     </div>
 
-    <footer class="footer">
-      <p>You're doing God's work. Or at least Karen's.</p>
-    </footer>
+    <div class="bro-container">
+      <div class="bro-visual" id="bro-char">
+        <div class="bro-eyes">
+          <div class="eye"></div>
+          <div class="eye"></div>
+        </div>
+        <div class="bro-mouth"></div>
+      </div>
+      <div class="txt-xs bro-meta-right">SIZE: 28KB</div>
+      <div class="txt-xs bro-meta-left">PX_FACE.OBJ</div>
+    </div>
+
+    <div class="toggle-section" id="cookie-toggle">
+      <div class="txt-sm toggle-header">
+        <span>CONSENT PROTOCOL</span>
+        <span id="status-text">-> ACTIVE</span>
+      </div>
+      <div class="toggle-switch active" id="toggle-ui">
+        <span class="txt-lg" id="toggle-label">ACCEPTING ALL</span>
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-label txt-sm">
+          <span>BROS TRACKING YOU</span>
+          <span>[REC]</span>
+        </div>
+        <div class="txt-xl" id="counter">0</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-label txt-sm">
+          <span>CURRENT RANK</span>
+          <span id="level-number">LVL.01</span>
+        </div>
+        <div class="txt-lg accent-text" id="level-title">COOKIE ROOKIE</div>
+
+        <div class="progress-bar-container">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="txt-xs progress-meta">
+          <span id="next-level-name">NEXT: DATA DONOR</span>
+          <span id="next-level-remaining">11 TO GO</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quip-container">
+      <div class="refresh-btn" id="refresh-quip">&#8635;</div>
+      <div class="txt-md quip-text" id="quip">&nbsp;</div>
+    </div>
+
+    <div class="txt-xs footer-serial">
+      SERIAL M7-01030
+    </div>
+
   </div>
 
   <script src="../quips.js"></script>
