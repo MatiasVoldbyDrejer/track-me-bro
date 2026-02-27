@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Track Me Bro",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Auto-accept ALL cookies everywhere. Be the hero marketers deserve.",
   "permissions": [
     "storage",

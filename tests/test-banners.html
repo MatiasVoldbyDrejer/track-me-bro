@@ -126,6 +126,30 @@
     <button class="primary" onclick="logClick('FALSE POSITIVE - Newsletter')">Accept</button>
   </div>
 
+  <!-- FALSE POSITIVE: LinkedIn "Accept" connection request -->
+  <h2>FALSE POSITIVE TEST: LinkedIn connection request (should NOT be clicked)</h2>
+  <div class="banner" id="invitation-card">
+    <p><strong>John Doe</strong> wants to connect with you.</p>
+    <button aria-label="Accept invitation from John Doe" class="primary" onclick="logClick('FALSE POSITIVE - LinkedIn Accept')">Accept</button>
+    <button class="secondary">Ignore</button>
+  </div>
+
+  <!-- FALSE POSITIVE: LinkedIn "Accept" with follow context -->
+  <h2>FALSE POSITIVE TEST: Follow request (should NOT be clicked)</h2>
+  <div class="banner" id="follow-request">
+    <p><strong>Jane Smith</strong> wants to follow you.</p>
+    <button aria-label="Accept follow request" class="primary" onclick="logClick('FALSE POSITIVE - Follow Accept')">Accept</button>
+    <button class="secondary">Decline</button>
+  </div>
+
+  <!-- TRUE POSITIVE: ARIA label button inside cookie container -->
+  <h2>Layer 4: ARIA label inside cookie banner (SHOULD be clicked)</h2>
+  <div class="banner cookie-consent-overlay">
+    <p>We use cookies and similar technologies.</p>
+    <button aria-label="Accept all cookies" class="primary" onclick="logClick('ARIA Cookie Consent')">OK</button>
+    <button class="secondary">Manage settings</button>
+  </div>
+
   <!-- DELAYED BANNER: Appears after 2 seconds -->
   <h2>Delayed banner (appears after 2 seconds)</h2>
   <div id="delayed-container" class="banner" style="min-height: 60px;">

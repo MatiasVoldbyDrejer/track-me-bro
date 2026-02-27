@@ -243,7 +243,18 @@ const ARIA_ACCEPT_PATTERNS = [
   /^i\s*agree$/i,
   /dismiss.*cookie/i,
   /close.*cookie.*banner/i,
-  /accept/i,
+];
+
+const ARIA_REJECT_PATTERNS = [
+  /invit/i,
+  /connect/i,
+  /friend\s*request/i,
+  /follow/i,
+  /subscribe/i,
+  /newsletter/i,
+  /notification/i,
+  /endorse/i,
+  /recommend/i,
 ];
 
 // Helpers
@@ -314,7 +325,9 @@ function tryAriaLabelMatching() {
   for (const el of candidates) {
     const label = el.getAttribute('aria-label') || '';
     if (!matchesAny(label, ARIA_ACCEPT_PATTERNS)) continue;
+    if (matchesAny(label, ARIA_REJECT_PATTERNS)) continue;
     if (!isVisible(el) || !isClickable(el)) continue;
+    if (!hasCookieAncestor(el)) continue;
     return el;
   }
   return null;
