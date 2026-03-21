@@ -14,6 +14,10 @@ It keeps a running count of how many sites are now tracking you, and delivers a 
 
 ## Installation
 
+### From the Chrome Web Store
+
+**[Install Track Me Bro](https://chromewebstore.google.com/detail/track-me-bro/jhjeijpdoojbnmpceehjfkchplecffpb)** — one click, zero effort. Just like accepting cookies.
+
 ### From Source (Developer Mode)
 
 1. Clone this repo or download as ZIP
